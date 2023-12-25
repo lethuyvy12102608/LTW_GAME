@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Getter
 @Setter
-public class Order extends BaseEntity {
+public class Order {
 
     private Account account;
 
