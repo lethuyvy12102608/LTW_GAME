@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class OrderItem extends BaseEntity {
+public class OrderItem {
 
     private Order order;
 

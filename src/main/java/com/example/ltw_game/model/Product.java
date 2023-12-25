@@ -5,8 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Product extends BaseEntity {
-
+public class Product {
+    private int id;
     private Category category;
 
     private String title;
@@ -23,4 +23,15 @@ public class Product extends BaseEntity {
 
     private boolean status;
 
+    public Product(int id, Category category, String title, String description, String detail, String image, double price, double discount, boolean status) {
+        this.id = id;
+        this.category = category;
+        this.title = title;
+        this.description = description;
+        this.detail = detail;
+        this.image = image;
+        this.price = price;
+        this.discount = discount;
+        this.status = status;
+    }
 }
