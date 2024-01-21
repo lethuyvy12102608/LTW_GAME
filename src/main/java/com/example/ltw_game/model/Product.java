@@ -18,24 +18,43 @@ public class Product {
 
     private String image;
 
-    private String brand;
-
     private double price;
 
     private double discount;
 
     private boolean status;
 
-    public Product(int id, Category category, String title, String description, String detail, String image, String brand, double price, double discount, boolean status) {
+    private String brand;
+
+    public Product(int id, Category category, String title, String description, String detail, String image, double price, double discount, boolean status, String brand) {
         this.id = id;
         this.category = category;
         this.title = title;
         this.description = description;
         this.detail = detail;
         this.image = image;
-        this.brand = brand;
         this.price = price;
         this.discount = discount;
         this.status = status;
+        this.brand = brand;
+    }
+
+    public Product() {
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", category=" + category +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", detail='" + detail + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", status=" + status +
+                ", brand='" + brand + '\'' +
+                '}';
     }
 }
