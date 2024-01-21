@@ -1,140 +1,413 @@
-<%--
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.example.ltw_game.model.Cart" %>
+<%@ page import="com.example.ltw_game.model.Product" %><%--
   Created by IntelliJ IDEA.
   User: lethuyvy1210
-  Date: 1/10/2024
-  Time: 2:32 PM
+  Date: 1/19/2024
+  Time: 6:32 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<%
+    Cart cart = (Cart) session.getAttribute("cart");
+    if (cart == null) {
+        cart = new Cart();
+    }
+%>
+
 <head>
     <title>Title</title>
 </head>
 <body>
-<!-- HEADER -->
+<!-- Begin Header Area -->
 <header>
-    <!-- TOP HEADER -->
-    <div id="top-header">
+    <!-- Begin Header Top Area -->
+    <div class="header-top">
         <div class="container">
-            <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-            </ul>
-            <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
-            </ul>
+            <div class="row">
+                <!-- Begin Header Top Left Area -->
+                <div class="col-lg-3 col-md-4">
+                    <div class="header-top-left">
+                        <ul class="phone-wrap">
+                            <li><span>Telephone Enquiry:</span><a href="#">(+123) 123 321 345</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Header Top Left Area End Here -->
+                <!-- Begin Header Top Right Area -->
+                <div class="col-lg-9 col-md-8">
+                    <div class="header-top-right">
+                        <ul class="ht-menu">
+                            <!-- Begin Setting Area -->
+                            <li>
+                                <div class="ht-setting-trigger"><span>Setting</span></div>
+                                <div class="setting ht-setting">
+                                    <ul class="ht-setting-list">
+                                        <li><a href="login-register.html">My Account</a></li>
+                                        <li><a href="checkout.html">Checkout</a></li>
+                                        <li><a href="login-register.html">Sign In</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Setting Area End Here -->
+                            <!-- Begin Currency Area -->
+                            <li>
+                                <span class="currency-selector-wrapper">Currency :</span>
+                                <div class="ht-currency-trigger"><span>USD $</span></div>
+                                <div class="currency ht-currency">
+                                    <ul class="ht-setting-list">
+                                        <li><a href="#">EUR €</a></li>
+                                        <li class="active"><a href="#">USD $</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Currency Area End Here -->
+                            <!-- Begin Language Area -->
+                            <li>
+                                <span class="language-selector-wrapper">Language :</span>
+                                <div class="ht-language-trigger"><span>English</span></div>
+                                <div class="language ht-language">
+                                    <ul class="ht-setting-list">
+                                        <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a>
+                                        </li>
+                                        <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Language Area End Here -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- Header Top Right Area End Here -->
+            </div>
         </div>
     </div>
-    <!-- /TOP HEADER -->
-
-    <!-- MAIN HEADER -->
-    <div id="header">
-        <!-- container -->
+    <!-- Header Top Area End Here -->
+    <!-- Begin Header Middle Area -->
+    <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
         <div class="container">
-            <!-- row -->
             <div class="row">
-                <!-- LOGO -->
-                <div class="col-md-3">
-                    <div class="header-logo">
-                        <a href="#" class="logo">
-                            <img src="./img/logo.png" alt="">
+                <!-- Begin Header Logo Area -->
+                <div class="col-lg-3">
+                    <div class="logo pb-sm-30 pb-xs-30">
+                        <a href="/home">
+                            <img src="images/menu/logo/1.jpg" alt="">
                         </a>
                     </div>
                 </div>
-                <!-- /LOGO -->
-
-                <!-- SEARCH BAR -->
-                <div class="col-md-6">
-                    <div class="header-search">
-                        <form action = "search" method = "GET">
-                            <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
-                            </select>
-                            <input class="input" name = "text" placeholder="Search here">
-                            <button class="search-btn">Search</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /SEARCH BAR -->
-
-                <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix">
-                    <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <div>
-                            <a href="#">
-                                <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
-                            </a>
-                        </div>
-                        <!-- /Wishlist -->
-
-                        <!-- Cart -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Your Cart</span>
-                                <div class="qty">3</div>
-                            </a>
-                            <div class="cart-dropdown">
-                                <div class="cart-list">
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
+                <!-- Header Logo Area End Here -->
+                <!-- Begin Header Middle Right Area -->
+                <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                    <!-- Begin Header Middle Searchbox Area -->
+                    <form action="search" method="GET" class="hm-searchbox">
+                        <select class="nice-select select-search-category">
+                            <option value="0">All</option>
+                            <option value="10">Laptops</option>
+                            <option value="17">- - Prime Video</option>
+                            <option value="20">- - - - All Videos</option>
+                            <option value="21">- - - - Blouses</option>
+                            <option value="22">- - - - Evening Dresses</option>
+                            <option value="23">- - - - Summer Dresses</option>
+                            <option value="24">- - - - T-shirts</option>
+                            <option value="25">- - - - Rent or Buy</option>
+                            <option value="26">- - - - Your Watchlist</option>
+                            <option value="27">- - - - Watch Anywhere</option>
+                            <option value="28">- - - - Getting Started</option>
+                            <option value="18">- - - - Computers</option>
+                            <option value="29">- - - - More to Explore</option>
+                            <option value="30">- - - - TV &amp; Video</option>
+                            <option value="31">- - - - Audio &amp; Theater</option>
+                            <option value="32">- - - - Camera, Photo</option>
+                            <option value="33">- - - - Cell Phones</option>
+                            <option value="34">- - - - Headphones</option>
+                            <option value="35">- - - - Video Games</option>
+                            <option value="36">- - - - Wireless Speakers</option>
+                            <option value="19">- - - - Electronics</option>
+                            <option value="37">- - - - Amazon Home</option>
+                            <option value="38">- - - - Kitchen &amp; Dining</option>
+                            <option value="39">- - - - Furniture</option>
+                            <option value="40">- - - - Bed &amp; Bath</option>
+                            <option value="41">- - - - Appliances</option>
+                            <option value="11">TV &amp; Audio</option>
+                            <option value="42">- - Chamcham</option>
+                            <option value="45">- - - - Office</option>
+                            <option value="47">- - - - Gaming</option>
+                            <option value="48">- - - - Chromebook</option>
+                            <option value="49">- - - - Refurbished</option>
+                            <option value="50">- - - - Touchscreen</option>
+                            <option value="51">- - - - Ultrabooks</option>
+                            <option value="52">- - - - Blouses</option>
+                            <option value="43">- - Sanai</option>
+                            <option value="53">- - - - Hard Drives</option>
+                            <option value="54">- - - - Graphic Cards</option>
+                            <option value="55">- - - - Processors (CPU)</option>
+                            <option value="56">- - - - Memory</option>
+                            <option value="57">- - - - Motherboards</option>
+                            <option value="58">- - - - Fans &amp; Cooling</option>
+                            <option value="59">- - - - CD/DVD Drives</option>
+                            <option value="44">- - Meito</option>
+                            <option value="60">- - - - Sound Cards</option>
+                            <option value="61">- - - - Cases &amp; Towers</option>
+                            <option value="62">- - - - Casual Dresses</option>
+                            <option value="63">- - - - Evening Dresses</option>
+                            <option value="64">- - - - T-shirts</option>
+                            <option value="65">- - - - Tops</option>
+                            <option value="12">Smartphone</option>
+                            <option value="66">- - Camera Accessories</option>
+                            <option value="68">- - - - Octa Core</option>
+                            <option value="69">- - - - Quad Core</option>
+                            <option value="70">- - - - Dual Core</option>
+                            <option value="71">- - - - 7.0 Screen</option>
+                            <option value="72">- - - - 9.0 Screen</option>
+                            <option value="73">- - - - Bags &amp; Cases</option>
+                            <option value="67">- - XailStation</option>
+                            <option value="74">- - - - Batteries</option>
+                            <option value="75">- - - - Microphones</option>
+                            <option value="76">- - - - Stabilizers</option>
+                            <option value="77">- - - - Video Tapes</option>
+                            <option value="78">- - - - Memory Card Readers</option>
+                            <option value="79">- - - - Tripods</option>
+                            <option value="13">Cameras</option>
+                            <option value="14">headphone</option>
+                            <option value="15">Smartwatch</option>
+                            <option value="16">Accessories</option>
+                        </select>
+                        <input name="text" placeholder="Enter your search key ...">
+                        <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                    <!-- Header Middle Searchbox Area End Here -->
+                    <!-- Begin Header Middle Right Area -->
+                    <div class="header-middle-right">
+                        <ul class="hm-menu">
+                            <!-- Begin Header Middle Wishlist Area -->
+                            <li class="hm-wishlist">
+                                <a href="wishlist.html">
+                                    <span class="cart-item-count wishlist-item-count">0</span>
+                                    <i class="fa fa-heart-o"></i>
+                                </a>
+                            </li>
+                            <!-- Header Middle Wishlist Area End Here -->
+                            <!-- Begin Header Mini Cart Area -->
+                            <li class="hm-minicart">
+                                <div class="hm-minicart-trigger">
+                                    <span class="item-icon"></span>
+                                    <c:set var="size" value=" = ${sessionScope.size()}"/>
+                                    <span class="item-text">£80.00
+                                        <span class="cart-item-count"><%=cart.getSize()%></span>
+<%--                                        <span class="cart-item-count">${size}</span>--%>
+                                    </span>
+                                </div>
+                                <span></span>
+                                <div class="minicart">
+                                    <ul class="minicart-product-list">
+                                        <li>
+                                            <a href="detailProduct.jsp" class="minicart-product-image">
+                                                <img src="images/product/small-size/5.jpg" alt="cart products">
+                                            </a>
+                                            <div class="minicart-product-details">
+                                                <h6><a href="detailProduct.jsp">Aenean eu tristique</a></h6>
+                                                <span>£40 x 1</span>
+                                            </div>
+                                            <button class="close" title="Remove">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <a href="detailProduct.jsp" class="minicart-product-image">
+                                                <img src="images/product/small-size/6.jpg" alt="cart products">
+                                            </a>
+                                            <div class="minicart-product-details">
+                                                <h6><a href="detailProduct.jsp">Aenean eu tristique</a></h6>
+                                                <span>£40 x 1</span>
+                                            </div>
+                                            <button class="close" title="Remove">
+                                                <i class="fa fa-close"></i>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                    <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                    <div class="minicart-button">
+                                        <a href="/cart?action=get"
+                                           class="li-button li-button-fullwidth li-button-dark">
+                                            <span>View Full Cart</span>
+                                        </a>
+                                        <a href="checkout.html" class="li-button li-button-fullwidth">
+                                            <span>Checkout</span>
+                                        </a>
                                     </div>
-
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
                                 </div>
-                                <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <a href="/cart">View Cart</a>
-                                    <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Cart -->
-
-                        <!-- Menu Toogle -->
-                        <div class="menu-toggle">
-                            <a href="#">
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
-                        </div>
-                        <!-- /Menu Toogle -->
+                            </li>
+                            <!-- Header Mini Cart Area End Here -->
+                        </ul>
                     </div>
+                    <!-- Header Middle Right Area End Here -->
                 </div>
-                <!-- /ACCOUNT -->
+                <!-- Header Middle Right Area End Here -->
             </div>
-            <!-- row -->
         </div>
-        <!-- container -->
     </div>
-    <!-- /MAIN HEADER -->
+    <!-- Header Middle Area End Here -->
+    <!-- Begin Header Bottom Area -->
+    <div class="header-bottom header-sticky d-none d-lg-block d-xl-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Begin Header Bottom Menu Area -->
+                    <div class="hb-menu">
+                        <nav>
+                            <ul>
+                                <li class="dropdown-holder"><a href="/home">Home</a>
+                                    <ul class="hb-dropdown">
+                                        <li class="active"><a href="index.html">Home One</a></li>
+                                        <li><a href="index-2.html">Home Two</a></li>
+                                        <li><a href="index-3.html">Home Three</a></li>
+                                        <li><a href="index-4.html">Home Four</a></li>
+                                    </ul>
+                                </li>
+                                <li class="megamenu-holder"><a href="/shop">Shop</a>
+                                    <ul class="megamenu hb-megamenu">
+                                        <li><a href="shop2.jsp">Shop Page Layout</a>
+                                            <ul>
+                                                <li><a href="shop-3-column.html">Shop 3 Column</a></li>
+                                                <li><a href="shop-4-column.html">Shop 4 Column</a></li>
+                                                <li><a href="shop2.jsp">Shop Left Sidebar</a></li>
+                                                <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                                                <li><a href="shop-list.html">Shop List</a></li>
+                                                <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a>
+                                                </li>
+                                                <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="single-product-gallery-left.html">Single Product Style</a>
+                                            <ul>
+                                                <li><a href="single-product-carousel.html">Single Product Carousel</a>
+                                                </li>
+                                                <li><a href="single-product-gallery-left.html">Single Product Gallery
+                                                    Left</a></li>
+                                                <li><a href="single-product-gallery-right.html">Single Product Gallery
+                                                    Right</a></li>
+                                                <li><a href="single-product-tab-style-top.html">Single Product Tab Style
+                                                    Top</a></li>
+                                                <li><a href="single-product-tab-style-left.html">Single Product Tab
+                                                    Style Left</a></li>
+                                                <li><a href="single-product-tab-style-right.html">Single Product Tab
+                                                    Style Right</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="detailProduct.jsp">Single Products</a>
+                                            <ul>
+                                                <li><a href="detailProduct.jsp">Single Product</a></li>
+                                                <li><a href="single-product-sale.html">Single Product Sale</a></li>
+                                                <li><a href="single-product-group.html">Single Product Group</a></li>
+                                                <li><a href="single-product-normal.html">Single Product Normal</a></li>
+                                                <li><a href="single-product-affiliate.html">Single Product Affiliate</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-holder"><a href="/shop">Blog</a>
+                                    <ul class="hb-dropdown">
+                                        <li class="sub-dropdown-holder"><a href="blog-left-sidebar.html">Blog Grid
+                                            View</a>
+                                            <ul class="hb-dropdown hb-sub-dropdown">
+                                                <li><a href="blog-2-column.html">Blog 2 Column</a></li>
+                                                <li><a href="blog-3-column.html">Blog 3 Column</a></li>
+                                                <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="sub-dropdown-holder"><a href="blog-list-left-sidebar.html">Blog List
+                                            View</a>
+                                            <ul class="hb-dropdown hb-sub-dropdown">
+                                                <li><a href="blog-list.html">Blog List</a></li>
+                                                <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
+                                                <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="sub-dropdown-holder"><a href="blog-details-left-sidebar.html">Blog
+                                            Details</a>
+                                            <ul class="hb-dropdown hb-sub-dropdown">
+                                                <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
+                                                <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="sub-dropdown-holder"><a href="blog-gallery-format.html">Blog
+                                            Format</a>
+                                            <ul class="hb-dropdown hb-sub-dropdown">
+                                                <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
+                                                <li><a href="blog-video-format.html">Blog Video Format</a></li>
+                                                <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="megamenu-static-holder"><a href="index.html">Pages</a>
+                                    <ul class="megamenu hb-megamenu">
+                                        <li><a href="blog-left-sidebar.html">Blog Layouts</a>
+                                            <ul>
+                                                <li><a href="blog-2-column.html">Blog 2 Column</a></li>
+                                                <li><a href="blog-3-column.html">Blog 3 Column</a></li>
+                                                <li><a href="blog-left-sidebar.html">Grid Left Sidebar</a></li>
+                                                <li><a href="blog-right-sidebar.html">Grid Right Sidebar</a></li>
+                                                <li><a href="blog-list.html">Blog List</a></li>
+                                                <li><a href="blog-list-left-sidebar.html">List Left Sidebar</a></li>
+                                                <li><a href="blog-list-right-sidebar.html">List Right Sidebar</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="blog-details-left-sidebar.html">Blog Details Pages</a>
+                                            <ul>
+                                                <li><a href="blog-details-left-sidebar.html">Left Sidebar</a></li>
+                                                <li><a href="blog-details-right-sidebar.html">Right Sidebar</a></li>
+                                                <li><a href="blog-audio-format.html">Blog Audio Format</a></li>
+                                                <li><a href="blog-video-format.html">Blog Video Format</a></li>
+                                                <li><a href="blog-gallery-format.html">Blog Gallery Format</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="index.html">Other Pages</a>
+                                            <ul>
+                                                <li><a href="login-register.html">My Account</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="compare.html">Compare</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="cart.jsp">Shopping Cart</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="index.html">Other Pages 2</a>
+                                            <ul>
+                                                <li><a href="contact.html">Contact</a></li>
+                                                <li><a href="about-us.html">About Us</a></li>
+                                                <li><a href="faq.html">FAQ</a></li>
+                                                <li><a href="404.html">404 Error</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="shop2.jsp">Smartwatch</a></li>
+                                <li><a href="shop2.jsp">Accessories</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!-- Header Bottom Menu Area End Here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header Bottom Area End Here -->
+    <!-- Begin Mobile Menu Area -->
+    <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+        <div class="container">
+            <div class="row">
+                <div class="mobile-menu">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu Area End Here -->
 </header>
-<!-- /HEADER -->
 </body>
 </html>
