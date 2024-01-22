@@ -38,8 +38,7 @@ public class AccountDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 accounts.add(new Account(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getBoolean(8)));
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,8 +56,7 @@ public class AccountDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getBoolean(8));
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,7 +65,7 @@ public class AccountDAO {
     }
 
     public Account getAccountByEmail(String email) {
-        Account account = new Account();
+        Account account = null;
         String query = "select * from account where email = ?";
         try {
             conn = new ConnectDB().getDBConnection();
@@ -76,13 +74,30 @@ public class AccountDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 account = new Account(rs.getInt(1), rs.getString(2), rs.getString(3),
-                                    rs.getString(4), rs.getString(5), rs.getString(6),
-                                    rs.getString(7), rs.getBoolean(8));
+                        rs.getString(4), rs.getString(5), rs.getString(6), rs.getBoolean(7));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return account;
+    }
+
+    public boolean register(Account account) {
+        String query = "insert into gamestore.account(email, password, fullName, phone, role, status) values(?,?,?,?,?,1)";
+        try {
+            conn = new ConnectDB().getDBConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, account.getEmail());
+            ps.setString(2, account.getPassword());
+            ps.setString(3, account.getFullName());
+            ps.setString(4, account.getPhone());
+            ps.setString(5, account.getRole());
+            int rowCount = ps.executeUpdate();
+            return rowCount > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
 }

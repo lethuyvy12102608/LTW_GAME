@@ -6,6 +6,7 @@ import com.example.ltw_game.model.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -107,11 +108,48 @@ public class ProductDAO {
         return products;
     }
 
-    public static void main(String[] args) {
-        ProductDAO dao = new ProductDAO();
-        List<Product> list = dao.getProductByCategoryId("1");
-        for (Product p : list) {
-            System.out.println(p.toString());
+    public void deleteProduct(String id) {
+        String query = "DELETE FROM product where id = ?";
+
+        try {
+            conn = new ConnectDB().getDBConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, id);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public void editProduct() {
+
+
+    }
+
+
+    public void saveProduct(Product product) {
+        String query = "INSERT INTO product (id,category_id, title, description, detail, image, price, discount, status) value(?,?,?,?,?,?,?,?,?)";
+        try {
+            conn = new ConnectDB().getDBConnection();
+            ps = conn.prepareStatement(query);
+            ps.setInt(1, product.getId());
+            ps.setInt(2, product.getCategory().getId());
+            ps.setString(3, product.getTitle());
+            ps.setString(4, product.getDescription());
+            ps.setString(5, product.getDetail());
+            ps.setString(6, product.getImage());
+            ps.setDouble(7, product.getPrice());
+            ps.setDouble(8, product.getDiscount());
+            ps.setBoolean(9, product.isStatus());
+
+            ps.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
+
 }
