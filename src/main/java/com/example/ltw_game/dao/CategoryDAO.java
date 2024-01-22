@@ -32,7 +32,7 @@ public class CategoryDAO {
 
     public Category getCategoryById(int id) {
         Category category = new Category();
-        String query = "select * from categogy where id = ?";
+        String query = "select * from category where id = ?";
         try {
             conn = new ConnectDB().getDBConnection();
             ps = conn.prepareStatement(query);

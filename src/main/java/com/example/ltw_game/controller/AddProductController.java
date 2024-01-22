@@ -42,7 +42,7 @@ public class AddProductController extends HttpServlet {
             response.sendRedirect("admin/product/add");
         } else {
             request.setAttribute("error", "ID " + id + " exited");
-            request.getRequestDispatcher("html/addProduct.jsp").forward(request, response);
+            request.getRequestDispatcher("admin/html/addProduct.jsp").forward(request, response);
         }
 
 

@@ -30,7 +30,7 @@ public class ManageAccountController extends HttpServlet {
 
         List<Account> accountList = accountDAO.getAllAccount();
         request.setAttribute("accountList", accountList);
-        request.getRequestDispatcher("html/manageAccount.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/html/manageAccount.jsp").forward(request, response);
 
 
     }
