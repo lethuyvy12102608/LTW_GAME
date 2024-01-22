@@ -19,7 +19,7 @@ public class AdminHomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
 
-        request.getRequestDispatcher("html/homeAdmin.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/html/homeAdmin.jsp").forward(request, response);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

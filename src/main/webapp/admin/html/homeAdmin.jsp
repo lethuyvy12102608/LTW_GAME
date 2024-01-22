@@ -73,8 +73,9 @@
             <a href="#forms" class="iq-waves-effect collapsed" data-toggle="collapse" aria-expanded="false"><i class="ri-profile-line"></i><span>Product</span><i class="ri-arrow-right-s-line iq-arrow-right"></i></a>
             <ul id="forms" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
               <li><a href="/admin/manageProduct"><i class="ri-tablet-line"></i>List Product</a></li>
-              <li><a href="/admin/product/add"><i class="ri-device-line"></i>Add Product</a></li>
-              <li><a href="/admin/product/edit"><i class="ri-toggle-line"></i>Edit Product</a></li>
+              <li><a href="/admin/product/add"><i class="ri-tablet-line"></i>Add Product</a></li>
+              <li><a href="/admin/product/edit"><i class="ri-tablet-line"></i>Edit Product</a></li>
+
             </ul>
           </li>
 

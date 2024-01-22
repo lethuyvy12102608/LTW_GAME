@@ -401,7 +401,7 @@
                             </div>
                         </div>
                         <div class="iq-card-body">
-                            <form>
+                            <form action="">
                                 <div class="form-group">
                                     <div class="add-img-user profile-img-edit">
                                         <img class="profile-pic img-fluid" src="images/user/11.png" alt="profile-pic">
@@ -414,9 +414,9 @@
                                     <div class="img-extension mt-3">
                                         <div class="d-inline-block align-items-center">
                                             <span>Only</span>
-                                            <a href="javascript:void();">.jpg</a>
-                                            <a href="javascript:void();">.png</a>
-                                            <a href="javascript:void();">.jpeg</a>
+                                            <a href="">.jpg</a>
+                                            <a href="">.png</a>
+                                            <a href="">.jpeg</a>
                                             <span>allowed</span>
                                         </div>
                                     </div>
